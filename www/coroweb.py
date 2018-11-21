@@ -55,7 +55,7 @@ def has_request_arg(fn):
                 param.kind != inspect.Parameter.VAR_POSITIONAL and param.kind != inspect.Parameter.KEYWORD_ONLY and param.kind != inspect.Parameter.VAR_KEYWORD):
             raise ValueError(
                 'request parameter must be the last named parameter in function: %s%s' % (fn.__name__, str(sig)))
-        return found
+    return found
 
 def has_var_kw_arg(fn):
     params = inspect.signature(fn).parameters
@@ -175,10 +175,8 @@ def add_routes(app, module_name):
         if attr.startswith('_'):
             continue
         fn = getattr(mod, attr)
-        print(fn)
         if callable(fn):
             method = getattr(fn, '__method__', None)
             path = getattr(fn, '__route__', None)
             if method and path:
-                print(fn)
                 add_route(app, fn)

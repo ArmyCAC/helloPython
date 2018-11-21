@@ -9,7 +9,7 @@ from www.coroweb import get
 from www.models import User
 
 
-@get('/users')
+@get('/')
 async def index(request):
     users = await User.findAll()
     return {
